@@ -8,10 +8,21 @@ const resolvers = {
         games() {
             return db.games;
         },
+
+        game: (_: any, { id }: { id: string }) =>
+            db.games.find((el) => el.id === id),
+
         reviews: () => {
             return db.reviews;
         },
+
+        review: (_: any, { id }: { id: string }) =>
+            db.reviews.find((el) => el.id === id),
+
         authors: () => db.authors,
+
+        author: (_: any, { id }: { id: string }) =>
+            db.authors.find((el) => el.id === id),
     },
 };
 
