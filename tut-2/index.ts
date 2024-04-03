@@ -55,6 +55,22 @@ const resolvers = {
             db.games.push(newGame);
             return newGame;
         },
+        editGame: (
+            _: any,
+            {
+                id,
+                game,
+            }: { id: string; game: { title?: string; platform?: string[] } }
+        ) => {
+            db.games = db.games.map((g) => {
+                if (g.id === id) {
+                    return { ...g, ...game };
+                }
+                return g;
+            });
+
+            return db.games.find((g) => g.id === id);
+        },
     },
 };
 
